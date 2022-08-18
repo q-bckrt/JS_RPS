@@ -1,0 +1,23 @@
+body {
+    background-color: #c2e2ff;
+    color: rgb(21, 21, 21);
+    margin: 0;
+    padding: 0;
+}
+
+.body_wrapper {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.content {
+    font-family: monaco, courier, sans-serif;
+    text-align: center;
+    margin-top: 15%;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: bold;
+}
