@@ -33,3 +33,60 @@ function getUserChoice(){
          console.log("please enter a valid choice ('rock', 'paper' or 'scissors')")
     }
 }
+
+// Runs a single round of the game.
+function playRound() {
+    console.log("3, 2, 1,... Go!");
+    userHand = getUserChoice();
+    computerHand = getComputerChoice();
+
+    console.log(`you played ${userHand}, computer played ${computerHand}`);
+    if (
+        (userHand === "rock" && computerHand === "scissors")
+        || (userHand === "paper" && computerHand === "rock")
+        || (userHand === "scissors" && computerHand === "paper")
+    ) {
+        console.log("user wins!")
+        return 1;
+    } else if (userHand === computerHand) {
+        console.log("draw!");
+        return 0;
+    } else {
+        console.log("computer wins!")
+        return 2;
+    }
+}
+
+// Run a full game that consists of five round.
+// Count the scores and determine a winner, or if it's a draw.
+function game() {
+    let userScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        switch (playRound()) {
+            case 0:
+                break;
+            case 1:
+                userScore++;
+                break;
+            case 2:
+                computerScore++;
+                break;
+            default:
+                console.log('an error occured.');
+                return;
+        }
+    }
+
+    if (userScore > computerScore) {
+        console.log("You win!");
+    } else if (userScore < computerScore) {
+        console.log("Computer wins!");
+    } else {
+        console.log("It's a draw!")
+    }
+}
+
+// Main
+game();
