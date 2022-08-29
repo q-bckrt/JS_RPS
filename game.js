@@ -35,12 +35,13 @@ function getUserChoice(){
 }
 
 // Runs a single round of the game.
-function playRound() {
-    console.log("3, 2, 1,... Go!");
-    userHand = getUserChoice();
-    computerHand = getComputerChoice();
+function playRound(btns) {
+    // console.log("3, 2, 1,... Go!");
+    // userHand = getUserChoice();
+    // computerHand = getComputerChoice();
 
-    console.log(`you played ${userHand}, computer played ${computerHand}`);
+    // console.log(`you played ${userHand}, computer played ${computerHand}`);
+/*
     if (
         (userHand === "rock" && computerHand === "scissors")
         || (userHand === "paper" && computerHand === "rock")
@@ -55,11 +56,13 @@ function playRound() {
         console.log("computer wins!")
         return 2;
     }
+    */
 }
 
 // Run a full game that consists of five round.
 // Count the scores and determine a winner, or if it's a draw.
 function game() {
+
     let userScore = 0;
     let computerScore = 0;
 
@@ -88,5 +91,41 @@ function game() {
     }
 }
 
+
+
 // Main
-game();
+const btns = document.querySelectorAll('button');
+
+function playRoundGui (e) {
+    const computerHand = getComputerChoice();
+    const userHand = e.srcElement.textContent;
+    const display = document.querySelector(".dialog_box");
+    
+    if (
+        (userHand === "rock" && computerHand === "scissors")
+        || (userHand === "paper" && computerHand === "rock")
+        || (userHand === "scissors" && computerHand === "paper")
+    ) {
+        console.log("user wins!")
+        display.textContent = `cmp: ${computerHand} vs usr: ${userHand} --> user wins!`;
+        return 1;
+    } else if (userHand === computerHand) {
+        console.log("draw!");
+        display.textContent = `cmp: ${computerHand} vs usr: ${userHand} --> draw!`;
+        return 0;
+    } else {
+        console.log("computer wins!")
+        display.textContent = `cmp: ${computerHand} vs usr: ${userHand} --> computer wins!`;
+        return 2;
+    }
+
+}
+
+btns.forEach(e => e.addEventListener("click", playRoundGui));
+
+
+// while(true) {
+    // playRound(btns);
+// }
+// btns.forEach(e => e.addEventListener("click", () => console.log("Hello!")));
+//game();
