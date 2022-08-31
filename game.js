@@ -24,10 +24,22 @@ function getComputerChoice(){
     }
 }
 
+function getUserChoice(e) {
+    if (e.srcElement.classList[0] === 'btn_rock') {
+        return 'rock';
+    } else if (e.srcElement.classList[0] === 'btn_paper') {
+        return 'paper';
+    } else if (e.srcElement.classList[0] === 'btn_scissors') {
+        return 'scissors';
+    } else {
+        return 'error';
+    }
+}
+
 function playRoundGui (e) {
-    const usrHand = e.srcElement.textContent;
+    const usrHand = getUserChoice(e);
     const cmpHand = getComputerChoice();
-    
+
     if (
         (usrHand === "rock" && cmpHand === "scissors")
         || (usrHand === "paper" && cmpHand === "rock")
@@ -51,7 +63,10 @@ function playRoundGui (e) {
 }
 
 function gameReset (again) {
+    display_result.textContent = '';
+    display_score.textContent = '';
     toggleGameInterface();
+
 
     const resultNode = document.querySelector('h2');
     const contentNode = document.querySelector('.content');
@@ -82,7 +97,8 @@ const display_result = document.querySelector('.dialog_box');
 const display_score = document.querySelector('.score_box');
 const buttons_box = document.querySelector('.buttons_box');
 
-const btns = document.querySelectorAll('div.buttons_box > button');
+// const btns = document.querySelectorAll('div.buttons_box > button');
+const btns = document.querySelectorAll('div.buttons_box > img');
 btns.forEach(e => e.addEventListener("click", playRoundGui));
 
 const playBtn = document.querySelector(".play_btn");
