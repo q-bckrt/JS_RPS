@@ -51,9 +51,25 @@ function playRoundGui (e) {
 }
 
 function gameReset (again) {
+    toggleGameInterface();
+
+    const resultNode = document.querySelector('h2');
+    const contentNode = document.querySelector('.content');
+
+    if (usrScore === 5) {
+        resultNode.classList.remove('hideSection')
+        resultNode.textContent = 'YOU WIN!';
+        console.log("NEEEE");
+    } else if (cmpScore === 5) {
+        resultNode.classList.remove('hideSection')
+        resultNode.textContent = 'YOU LOSE!';
+        console.log("AAAAH");
+    } else {
+        console.log("HELLO");
+        resultNode.classList.add('hideSection')
+    }
     usrScore = 0;
     cmpScore = 0;
-    toggleGameInterface();
     playBtn.textContent = 'Play Again?';
 }
 
