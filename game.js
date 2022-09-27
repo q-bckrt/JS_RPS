@@ -47,16 +47,16 @@ function playRoundGui (e) {
     ) {
         usrScore += 1;
         display_result.textContent = 
-            `cmp: ${cmpHand} vs usr: ${usrHand} -> user wins!`;
+            `cmp: ${usrHand} vs usr: ${cmpHand} -> user wins!`;
     } else if (usrHand === cmpHand) {
         display_result.textContent = 
-            `cmp: ${cmpHand} vs usr: ${usrHand} -> draw!`;
+            `cmp: ${usrHand} vs usr: ${cmpHand} -> draw!`;
     } else {
         cmpScore += 1;
         display_result.textContent = 
-            `cmp: ${cmpHand} vs usr: ${usrHand} -> computer wins!`;
+            `cmp: ${usrHand} vs usr: ${cmpHand} -> computer wins!`;
     }
-    display_score.textContent = `computer: ${cmpScore} - user: ${usrScore}`;
+    display_score.textContent = `${usrScore} - ${cmpScore}`;
     if (usrScore === 5 || cmpScore === 5) {
         gameReset(true);
     }
@@ -64,12 +64,12 @@ function playRoundGui (e) {
 
 function gameReset (again) {
     display_result.textContent = '';
-    display_score.textContent = '';
+    display_score.textContent = '0 - 0';
     toggleGameInterface();
 
 
     const resultNode = document.querySelector('h2');
-    const contentNode = document.querySelector('.content');
+    // const contentNode = document.querySelector('.content');
 
     if (usrScore === 5) {
         resultNode.classList.remove('hideSection')
@@ -97,7 +97,6 @@ const display_result = document.querySelector('.dialog_box');
 const display_score = document.querySelector('.score_box');
 const buttons_box = document.querySelector('.buttons_box');
 
-// const btns = document.querySelectorAll('div.buttons_box > button');
 const btns = document.querySelectorAll('div.buttons_box > img');
 btns.forEach(e => e.addEventListener("click", playRoundGui));
 
